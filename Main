@@ -35,5 +35,34 @@ namespace WpfApp2
 
             // MySqlDataReader rdr ;
             //string connectionString = String.Format("Database={0};Data Source={1};User Id={2};Password={3}", db, server, user, pass);
+   //conn = new MySqlConnection(connectionString);
+            //conn.Open();
+            /*MySqlCommand cmd = new MySqlCommand("select * from  meeting", conn);
+           
+
+           
+            DataTable dt = new DataTable();
+            dt.Load(cmd.ExecuteReader());
+            dataGrid.DataContext = dt;
+            conn.Close();*/
+
+            // rdr = cmd.ExecuteReader();
+
+            //while (rdr.Read())
+            //{
+            //Console.WriteLine("{0} {1} {2} {3} {4}", rdr[0], rdr.GetString(1), rdr.GetString(2), rdr.GetString(3), rdr.GetString(4));
+            //}
+
+
+        }
+
+        private void viewMeeting(Object sender, RoutedEventArgs e)
+        {
+            MySqlDataReader rdr;
+             string connectionString = String.Format("Database={0};Data Source={1};User Id={2};Password={3}", db, server, user, pass);
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand("select * from  meeting", conn);
+
 
         
