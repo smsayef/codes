@@ -6,3 +6,17 @@
         xmlns:local="clr-namespace:WpfApp2"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+<Grid>
+        <DataGrid x:Name="dataGrid"  CanUserAddRows="False" AlternatingRowBackground="AliceBlue" HorizontalAlignment="Left" Height="335" Margin="143,85,-0.4,0" VerticalAlignment="Top" Width="651" ItemsSource="{Binding}"  />
+        <Button Content="View Meeing List"  Click="viewMeeting" HorizontalAlignment="Left" Height="34" Margin="10,51,0,0" VerticalAlignment="Top" Width="110" RenderTransformOrigin="0.681,2.233"/>
+        <Button Content="View Student List" Click="viewStudentList" HorizontalAlignment="Left" Height="34" Margin="10,104,0,0" VerticalAlignment="Top" Width="110" RenderTransformOrigin="0.681,2.233"/>
+        <Button Content="View Student Group" Click="viewStudentGroup" HorizontalAlignment="Left" Height="34" Margin="10,158,0,0" VerticalAlignment="Top" Width="110" RenderTransformOrigin="0.681,2.233"/>
+        <Button Content="View Classes" Click="viewClasses" HorizontalAlignment="Left" Height="34" Margin="10,214,0,0" VerticalAlignment="Top" Width="110" RenderTransformOrigin="0.681,2.233"/>
+        <Button Content="View by student Group" Click="viewByGroup" HorizontalAlignment="Left" Height="34" Margin="10,295,0,0" VerticalAlignment="Top" Width="110" RenderTransformOrigin="0.681,2.233"/>
+        <TextBox x:Name="search_me"   HorizontalAlignment="Left" Height="31" Margin="522,23,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="168"/>
+        <Button  Content="View Student" Click="searchEvent" HorizontalAlignment="Left" Margin="695,23,0,0" VerticalAlignment="Top" Width="59" Height="31"/>
+        <TextBox x:Name="search_me2"   HorizontalAlignment="Left" Height="31" Margin="190,23,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="168"/>
+        <Button  Content="View Group" Click="searchEvent2" HorizontalAlignment="Left" Margin="363,23,0,0" VerticalAlignment="Top" Width="59" Height="31"/>
+
+    </Grid>
+</Window>
