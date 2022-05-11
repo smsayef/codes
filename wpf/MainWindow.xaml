@@ -1,0 +1,17 @@
+﻿<Window x:Class="wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:wpf"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="1000">
+    <Grid>
+        <Button Content="View Group List" Click="viewStudentGroup" HorizontalAlignment="Left" Margin="98,56,0,0" VerticalAlignment="Top" Width="120" Height="41"/>
+        <Button Content="View Classess List" Click="viewClasses" HorizontalAlignment="Left" Margin="99,130,0,0" VerticalAlignment="Top" Width="117" RenderTransformOrigin="0.553,4.31" Height="42"/>
+        <Button Content="View Metting List" Click="viewMeeting" HorizontalAlignment="Left" Margin="100,212,0,0" VerticalAlignment="Top" Width="116" RenderTransformOrigin="0.553,4.31" Height="42"/>
+        <Button Content="View Students Lists" Click="viewStudentList" HorizontalAlignment="Left" Margin="102,307,0,0" VerticalAlignment="Top" Width="116" RenderTransformOrigin="0.553,4.31" Height="41"/>
+        <DataGrid x:Name="showdata" HorizontalAlignment="Left" Height="400" Margin="256,19,0,0" VerticalAlignment="Top" Width="600" ItemsSource="{Binding}"/>
+
+    </Grid>
+</Window>
