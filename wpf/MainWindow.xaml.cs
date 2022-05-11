@@ -66,6 +66,7 @@ namespace wpf
             conn.Close();
         }
 
+        
         private void viewStudentGroup(Object sender, RoutedEventArgs e)
         {
             MySqlDataReader rdr;
