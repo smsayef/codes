@@ -63,6 +63,44 @@ namespace WpfApp2
             MySqlConnection conn = new MySqlConnection(connectionString);
             conn.Open();
             MySqlCommand cmd = new MySqlCommand("select * from  meeting", conn);
+            
+        DataTable dt = new DataTable();
+            dt.Load(cmd.ExecuteReader());
+            dataGrid.DataContext = dt;
+            conn.Close();
+        }
+
+        private void viewStudentList(Object sender, RoutedEventArgs e)
+        {
+            MySqlDataReader rdr;
+            string connectionString = String.Format("Database={0};Data Source={1};User Id={2};Password={3}", db, server, user, pass);
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand("select * from  student", conn);
+
+
+
+            DataTable dt = new DataTable();
+            dt.Load(cmd.ExecuteReader());
+            dataGrid.DataContext = dt;
+            conn.Close();
+        }
+
+        private void viewStudentGroup(Object sender, RoutedEventArgs e)
+        {
+            MySqlDataReader rdr;
+            string connectionString = String.Format("Database={0};Data Source={1};User Id={2};Password={3}", db, server, user, pass);
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand("select * from  studentGroup", conn);
+
+
+
+            DataTable dt = new DataTable();
+            dt.Load(cmd.ExecuteReader());
+            dataGrid.DataContext = dt;
+            conn.Close();
+        }
 
 
         
