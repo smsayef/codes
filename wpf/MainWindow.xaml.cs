@@ -115,7 +115,7 @@ namespace wpf
             string connectionString = String.Format("Database={0};Data Source={1};User Id={2};Password={3}", db, server, user, pass);
             MySqlConnection conn = new MySqlConnection(connectionString);
             conn.Open();
-            string query = "SELECT * FROM studentGroup WHERE group_id LIKE '" + searchText + "%'";
+            string query = "SELECT * FROM student WHERE student_id LIKE '" + searchText + "%'";
             Console.WriteLine(query);
             MySqlCommand cmd = new MySqlCommand(query, conn);
             DataTable dt = new DataTable();
