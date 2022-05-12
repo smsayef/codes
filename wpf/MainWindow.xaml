@@ -5,13 +5,381 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1000">
+        Height="600" Width="800"
+         ResizeMode="NoResize"
+        Background="#181735"
+        WindowStartupLocation="CenterScreen"
+        >
     <Grid>
-        <Button Content="View Group List" Click="viewStudentGroup" HorizontalAlignment="Left" Margin="98,56,0,0" VerticalAlignment="Top" Width="120" Height="41"/>
-        <Button Content="View Classess List" Click="viewClasses" HorizontalAlignment="Left" Margin="99,130,0,0" VerticalAlignment="Top" Width="117" RenderTransformOrigin="0.553,4.31" Height="42"/>
-        <Button Content="View Metting List" Click="viewMeeting" HorizontalAlignment="Left" Margin="100,212,0,0" VerticalAlignment="Top" Width="116" RenderTransformOrigin="0.553,4.31" Height="42"/>
-        <Button Content="View Students Lists" Click="viewStudentList" HorizontalAlignment="Left" Margin="102,307,0,0" VerticalAlignment="Top" Width="116" RenderTransformOrigin="0.553,4.31" Height="41"/>
-        <DataGrid x:Name="showdata" HorizontalAlignment="Left" Height="400" Margin="256,19,0,0" VerticalAlignment="Top" Width="600" ItemsSource="{Binding}"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="29*"/>
+            <ColumnDefinition Width="62*"/>
+            <ColumnDefinition Width="143*"/>
+            <ColumnDefinition Width="26*"/>
+            <ColumnDefinition Width="61*"/>
+            <ColumnDefinition Width="19*"/>
+            <ColumnDefinition Width="57*"/>
+            <ColumnDefinition Width="397*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Background="#0F0F2D" Grid.ColumnSpan="8" Margin="0,5,-0.4,0" Height="25" VerticalAlignment="Top" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Name" x:Name="userName"
+                       Foreground="White"
+                       Grid.Column="0"
+                       Grid.ColumnSpan ="2"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center"
+                       FontWeight="Heavy"
+                       FontFamily="Verdana"
+                       Margin="28,5,28,0" 
+                       />
+            <Button Content="Sign Out"
+                    Click="SignOut"
+                    Foreground="White"
+                    FontSize="15"
+                    FontWeight="Medium" Margin="0,0,0,0" 
+                    Grid.Column="12"
+                    Grid.ColumnSpan ="2"
+                    >
+
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="Gray"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF4C70"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="80" Height="25"
+                            CornerRadius="12"
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"
+                                          HorizontalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <TextBox
+                Visibility="Hidden"
+                x:Name="class_id" HorizontalAlignment="Right" Margin="0,38,38.6,-35" TextWrapping="Wrap" Text="" Width="181" Height="22" VerticalAlignment="Top" Grid.ColumnSpan="4" Grid.Column="5">
+                <TextBox.Style>
+                    <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                        <Style.Resources>
+                            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                <VisualBrush.Visual>
+                                    <Label Content="Type to Search" Foreground="LightGray" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Style.Resources>
+                        <Style.Triggers>
+                            <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </Trigger>
+                            <Trigger Property="Text" Value="{x:Null}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <TextBox x:Name="group_id" Visibility="Hidden" HorizontalAlignment="Right" Margin="0,75,38.6,-73" TextWrapping="Wrap" Text="" Width="181" Height="23" VerticalAlignment="Top" Grid.ColumnSpan="4" Grid.Column="5">
+                <TextBox.Style>
+                    <Style xmlns:sys="clr-namespace:System;assembly=mscorlib" TargetType="{x:Type TextBox}">
+                        <Style.Resources>
+                            <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                <VisualBrush.Visual>
+                                    <Label Content="Type to Search" Foreground="LightGray" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Style.Resources>
+                        <Style.Triggers>
+                            <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </Trigger>
+                            <Trigger Property="Text" Value="{x:Null}">
+                                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+
+        </Grid>
+        <Button 
+            x:Name="class_list"
+            Visibility="Hidden"
+            Content="Classes List"
+            Foreground="White"
+            FontSize="14"
+            FontWeight="Medium" Height="25" Margin="1.2,225.2,51.6,0" VerticalAlignment="Top" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="1" Click="viewClasses"
+                    >
+
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Gray"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF4C70"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Width="100" Height="25"
+                        CornerRadius="12"
+                        Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                            HorizontalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button 
+            x:Name="meeting_list"
+            Visibility="Hidden"
+            Content="Meetings List"
+            Foreground="White"
+            FontSize="14"
+            FontWeight="Medium" Height="25" Margin="1.2,277.2,51.6,0" VerticalAlignment="Top" Grid.Row="1" Click="viewMeeting" Grid.ColumnSpan="2" Grid.Column="1"
+                    >
+
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Gray"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF4C70"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Width="100" Height="25"
+                        CornerRadius="12"
+                        Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                            HorizontalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button 
+            x:Name="student_list"
+            Visibility="Collapsed"
+            Content="Students List"
+            Foreground="White"
+            FontSize="14"
+            FontWeight="Medium" Height="25" Margin="1.2,325.2,51.6,0" VerticalAlignment="Top" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="1" Click="viewStudentList"
+                    >
+
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Gray"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF4C70"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Width="100" Height="25"
+                        CornerRadius="12"
+                        Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                            HorizontalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <DataGrid  x:Name="dataGrid" CanUserAddRows="False" AlternatingRowBackground="LightGray" Grid.ColumnSpan="6" HorizontalAlignment="Left" Height="436" Margin="96.6,109.2,-10.4,0" Grid.Row="1" VerticalAlignment="Top" Width="617" ItemsSource="{Binding}" Grid.Column="2"/>
+        <Button 
+            x:Name="view_group_in_class"
+            Visibility="Hidden"
+            Content="View Groups in a Class"
+            Foreground="White"
+            FontSize="14"
+            FontWeight="Medium" Height="25"  Margin="68.2,10.2,131.6,0" VerticalAlignment="Top" Grid.Column="7" RenderTransformOrigin="0.571,0.976"  Grid.Row="1" Click="Button_Click"
+                    >
+
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Gray"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF4C70"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Width="160" Height="25"
+                        CornerRadius="12"
+                        Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                            HorizontalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button 
+            x:Name="group_list"
+            Visibility="Hidden"
+            Content="Group List"
+            Foreground="White"
+            FontSize="14"
+            FontWeight="Medium" Height="25" Margin="1.2,177.2,51.6,0" VerticalAlignment="Top" Grid.Row="1" Click="viewStudentGroup" Grid.ColumnSpan="2" Grid.Column="1"
+                    >
+
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Gray"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF4C70"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Width="100" Height="25"
+                        CornerRadius="12"
+                        Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                            HorizontalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button Content="Bachelors"
+            Foreground="White"
+            FontSize="14"
+            FontWeight="Medium" Height="25" Margin="1.2,28.2,51.6,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" Click="Bsc"
+                    >
+
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Gray"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF4C70"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Width="100" Height="25"
+                        CornerRadius="12"
+                        Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                            HorizontalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button Content="Masters"
+            Foreground="White"
+            FontSize="14"
+            FontWeight="Medium" Height="25" Margin="1.2,65.2,51.6,0" VerticalAlignment="Top" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="1" Click="Msc"
+                    >
+
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Gray"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF4C70"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Width="100" Height="25"
+                        CornerRadius="12"
+                        Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                            HorizontalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button
+            Visibility="Hidden"
+            x:Name="view_student_in_a_group"
+            Content="View Student in a Group"
+            Foreground="White"
+            FontSize="14"
+            FontWeight="Medium" Height="25" Margin="60.2,47.2,122.6,0" VerticalAlignment="Top" Grid.Column="7" Grid.Row="1" RenderTransformOrigin="0.571,0.976" Click="Button_Click_1" 
+                    >
+
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Gray"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF4C70"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Width="160" Height="25"
+                        CornerRadius="12"
+                        Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                            HorizontalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
 
     </Grid>
 </Window>
